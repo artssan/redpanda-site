@@ -46,30 +46,40 @@
 
     /* ---------- Perlas de boba flotando ---------- */
     .burbujas { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
-    .burbujas span {
+    /* tapiocas blancas semitransparentes que suben girando */
+    .burbujas img {
       position: absolute;
-      bottom: -80px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .10);
-      border: 2px solid rgba(255, 255, 255, .16);
+      bottom: -140px;
+      height: auto;
+      opacity: 0;
       animation: subir linear infinite;
     }
-    .burbujas span:nth-child(1)  { left: 6%;  width: 34px; height: 34px; animation-duration: 16s; animation-delay: -2s; }
-    .burbujas span:nth-child(2)  { left: 15%; width: 18px; height: 18px; animation-duration: 12s; animation-delay: -8s; }
-    .burbujas span:nth-child(3)  { left: 24%; width: 46px; height: 46px; animation-duration: 20s; animation-delay: -12s; }
-    .burbujas span:nth-child(4)  { left: 36%; width: 22px; height: 22px; animation-duration: 14s; animation-delay: -4s; }
-    .burbujas span:nth-child(5)  { left: 48%; width: 14px; height: 14px; animation-duration: 11s; animation-delay: -9s; }
-    .burbujas span:nth-child(6)  { left: 58%; width: 38px; height: 38px; animation-duration: 18s; animation-delay: -1s; }
-    .burbujas span:nth-child(7)  { left: 69%; width: 20px; height: 20px; animation-duration: 13s; animation-delay: -6s; }
-    .burbujas span:nth-child(8)  { left: 78%; width: 52px; height: 52px; animation-duration: 22s; animation-delay: -14s; }
-    .burbujas span:nth-child(9)  { left: 88%; width: 26px; height: 26px; animation-duration: 15s; animation-delay: -3s; }
-    .burbujas span:nth-child(10) { left: 95%; width: 16px; height: 16px; animation-duration: 12s; animation-delay: -10s; }
+    .burbujas img:nth-child(1)  { left: 3%;  width: 70px;  animation-duration: 19s; animation-delay: -2s; }
+    .burbujas img:nth-child(2)  { left: 13%; width: 42px;  animation-duration: 14s; animation-delay: -9s; }
+    .burbujas img:nth-child(3)  { left: 22%; width: 96px;  animation-duration: 24s; animation-delay: -15s; }
+    .burbujas img:nth-child(4)  { left: 33%; width: 50px;  animation-duration: 16s; animation-delay: -5s; }
+    .burbujas img:nth-child(5)  { left: 45%; width: 36px;  animation-duration: 13s; animation-delay: -11s; }
+    .burbujas img:nth-child(6)  { left: 55%; width: 78px;  animation-duration: 21s; animation-delay: -1s; }
+    .burbujas img:nth-child(7)  { left: 66%; width: 46px;  animation-duration: 15s; animation-delay: -7s; }
+    .burbujas img:nth-child(8)  { left: 75%; width: 104px; animation-duration: 26s; animation-delay: -18s; }
+    .burbujas img:nth-child(9)  { left: 86%; width: 58px;  animation-duration: 17s; animation-delay: -4s; }
+    .burbujas img:nth-child(10) { left: 93%; width: 40px;  animation-duration: 14s; animation-delay: -12s; }
+    .burbujas img:nth-child(11) { left: 39%; width: 64px;  animation-duration: 22s; animation-delay: -20s; }
+    .burbujas img:nth-child(12) { left: 8%;  width: 54px;  animation-duration: 18s; animation-delay: -13s; }
+    .burbujas img:nth-child(even) { animation-name: subir-izq; }
     @keyframes subir {
-      0%   { transform: translate(0, 0); opacity: 0; }
-      10%  { opacity: 1; }
-      50%  { transform: translate(18px, -55vh); }
-      90%  { opacity: 1; }
-      100% { transform: translate(-10px, -115vh); opacity: 0; }
+      0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+      10%  { opacity: .15; }
+      50%  { transform: translate(24px, -60vh) rotate(160deg); }
+      90%  { opacity: .15; }
+      100% { transform: translate(-12px, -125vh) rotate(320deg); opacity: 0; }
+    }
+    @keyframes subir-izq {
+      0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+      10%  { opacity: .12; }
+      50%  { transform: translate(-22px, -60vh) rotate(-140deg); }
+      90%  { opacity: .12; }
+      100% { transform: translate(14px, -125vh) rotate(-290deg); opacity: 0; }
     }
 
     main {
@@ -82,7 +92,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 56px 16px 72px;
+      padding: 48px 16px 100px;
     }
 
     /* ---------- Etiqueta ---------- */
@@ -190,23 +200,40 @@
 
     /* ---------- Tarjeta de la isla ---------- */
     .isla {
-      margin-top: clamp(34px, 6vh, 50px);
+      margin-top: clamp(86px, 12vh, 100px);
       width: min(460px, 100%);
     }
     .isla-tarjeta {
+      position: relative;
+      transform: rotate(-1.2deg);
+      transition: transform .45s var(--rebote);
+      cursor: default;
+    }
+    .isla-caja {
       background: var(--blanco);
       color: var(--rojo);
       border-radius: 22px;
       overflow: hidden;
       box-shadow: 0 10px 0 var(--rojo-oscuro), 0 18px 40px rgba(110, 10, 0, .28);
-      transform: rotate(-1.2deg);
-      transition: transform .45s var(--rebote), box-shadow .45s var(--rebote);
-      cursor: default;
+      transition: box-shadow .45s var(--rebote);
     }
-    .isla-tarjeta:hover {
-      transform: rotate(0deg) translateY(-6px) scale(1.03);
+    .isla-tarjeta:hover { transform: rotate(0deg) translateY(-6px) scale(1.03); }
+    .isla-tarjeta:hover .isla-caja {
       box-shadow: 0 16px 0 var(--rojo-oscuro), 0 28px 50px rgba(110, 10, 0, .35);
     }
+
+    /* Panda echado encima de la tarjeta */
+    .panda-sofa {
+      position: absolute;
+      right: 12px;
+      bottom: calc(100% - 12px);
+      width: 100px;
+      height: auto;
+      transform-origin: 50% 100%;
+      transition: transform .45s var(--rebote);
+      filter: drop-shadow(0 4px 0 rgba(150, 15, 5, .35));
+    }
+    .isla-tarjeta:hover .panda-sofa { transform: translateY(-6px) rotate(-5deg) scale(1.08); }
     .cinta {
       height: 16px;
       background: repeating-linear-gradient(
@@ -292,6 +319,55 @@
     .insta:hover svg, .insta:focus-visible svg { transform: rotate(-12deg) scale(1.15); }
     .insta:active { transform: translateY(0) scale(.98); box-shadow: 0 2px 0 var(--rojo-oscuro); }
 
+    /* ---------- Panda que se asoma en la esquina ---------- */
+    .panda-esquina {
+      position: fixed;
+      right: clamp(8px, 3vw, 48px);
+      bottom: 0;
+      width: clamp(120px, 17vw, 230px);
+      z-index: 2;
+      transform: translateY(100%);
+      animation: asomarse 1s var(--rebote) 1.4s forwards;
+    }
+    .panda-mueve {
+      position: relative;
+      transform-origin: 50% 100%;
+      transition: transform .5s var(--rebote);
+    }
+    .panda-esquina img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 -2px 12px rgba(110, 10, 0, .25));
+    }
+    @keyframes asomarse {
+      to { transform: translateY(42%); }
+    }
+    .panda-esquina:hover .panda-mueve { transform: translateY(-34%) rotate(-4deg); }
+    .globo {
+      position: absolute;
+      right: 82%;
+      top: 4%;
+      background: var(--blanco);
+      color: var(--rojo);
+      font-weight: 600;
+      font-size: clamp(.8rem, 1.2vw, .95rem);
+      white-space: nowrap;
+      padding: 8px 14px;
+      border-radius: 16px 16px 4px 16px;
+      box-shadow: 0 4px 0 var(--rojo-oscuro);
+      opacity: 0;
+      transform: translateY(10px) scale(.7);
+      transform-origin: 100% 100%;
+      transition: opacity .25s, transform .4s var(--rebote);
+      pointer-events: none;
+    }
+    .panda-esquina:hover .globo {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition-delay: .15s;
+    }
+
     footer {
       position: absolute;
       bottom: 20px;
@@ -305,13 +381,24 @@
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .entra { opacity: 1; }
       .burbujas { display: none; }
+      .panda-esquina { transform: translateY(42%); }
     }
   </style>
 </head>
 <body>
   <div class="burbujas" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
+    <img src="img/tapioca-1.png" alt="">
+    <img src="img/tapioca-2.png" alt="">
+    <img src="img/tapioca-3.png" alt="">
+    <img src="img/tapioca-4.png" alt="">
+    <img src="img/tapioca-5.png" alt="">
+    <img src="img/tapioca-1.png" alt="">
+    <img src="img/tapioca-2.png" alt="">
+    <img src="img/tapioca-3.png" alt="">
+    <img src="img/tapioca-4.png" alt="">
+    <img src="img/tapioca-5.png" alt="">
+    <img src="img/tapioca-1.png" alt="">
+    <img src="img/tapioca-2.png" alt="">
   </div>
 
   <main>
@@ -330,6 +417,8 @@
 
     <section class="isla entra" style="--i:5">
       <div class="isla-tarjeta">
+        <img class="panda-sofa" src="img/panda-acostado.png" alt="" width="700" height="629">
+        <div class="isla-caja">
         <div class="cinta" aria-hidden="true"></div>
         <div class="isla-cuerpo">
           <div class="pin" aria-hidden="true">
@@ -344,6 +433,7 @@
             <span>Bogotá · ¡Muy pronto abrimos!</span>
           </div>
         </div>
+        </div>
       </div>
     </section>
 
@@ -356,6 +446,13 @@
       @redpanda.tea
     </a>
   </main>
+
+  <div class="panda-esquina" aria-hidden="true">
+    <div class="panda-mueve">
+      <span class="globo">¡Ya casi abrimos!</span>
+      <img src="img/panda-saluda.png" alt="" width="623" height="700">
+    </div>
+  </div>
 
   <footer>© 2026 Red Panda</footer>
 </body>
